@@ -1,0 +1,42 @@
+multi_agent_chatbot_frontend - Setup & Run
+
+1) Prerequisites
+- Node.js >= 16
+- npm >= 8
+
+2) Install dependencies
+npm install
+
+3) Environment variables (create .env in this folder, optional)
+# Backend base URL (no trailing slash), e.g. http://localhost:8000
+REACT_APP_BACKEND_URL=http://localhost:8000
+
+Notes:
+- If REACT_APP_BACKEND_URL is not set, the frontend will call relative paths (/api/...) and you can use a dev proxy or same-origin deployment.
+
+4) Start development server
+npm start
+
+5) Build for production
+npm run build
+
+6) Backend integration placeholders
+- POST {REACT_APP_BACKEND_URL}/api/chat/message
+  Body: { "message": string }
+  Expects: { "messages": [ { "role": "agent" | "user", "agentId": string, "content": string, "timestamp": number } ], "agentStatus": { ... } }
+
+- GET {REACT_APP_BACKEND_URL}/api/chat/agents/status
+  Expects: { "agentStatus": { [agentId]: "idle" | "thinking" | "responding" | "error" } }
+
+7) UI interactions
+- Enter to send, Shift+Enter for new line
+- Theme toggle in header (Light/Dark)
+- Agents display animated status indicators (Idle/Thinking/Responding/Error)
+
+8) Customization
+- Colors and base tokens are in src/App.js (themeTokens)
+- Global utilities in src/App.css and src/index.css
+
+9) Troubleshooting
+- If you get CORS errors, configure CORS in backend or serve both under same origin.
+- If API is unreachable, a simulated agent response is used for demo so UI remains functional.

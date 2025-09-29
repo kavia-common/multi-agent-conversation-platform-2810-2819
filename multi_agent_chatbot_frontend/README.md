@@ -1,82 +1,54 @@
-# Lightweight React Template for KAVIA
+# Multi-Agent Chatbot Frontend (React)
 
-This project provides a minimal React template with a clean, modern UI and minimal dependencies.
+A minimal, modern, and playful single-page chat UI following the Ocean Professional theme. It features a header, agent indicators, chat window, and a bottom composer with responsive design.
 
-## Features
-
-- **Lightweight**: No heavy UI frameworks - uses only vanilla CSS and React
-- **Modern UI**: Clean, responsive design with KAVIA brand styling
-- **Fast**: Minimal dependencies for quick loading times
-- **Simple**: Easy to understand and modify
+## Highlights
+- Playful Ocean theme with vibrant gradients and rounded corners
+- Multi-agent indicators with animated status (idle/thinking/responding/error)
+- Responsive chat window and sticky composer
+- REST API placeholders for backend integration, with simulated responses when backend is unavailable
+- Accessibility-minded: focus outlines, keyboard send (Enter), Shift+Enter new lines
 
 ## Getting Started
 
-In the project directory, you can run:
+Install and run:
 
-### `npm start`
-
-Runs the app in development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-### `npm test`
-
-Launches the test runner in interactive watch mode.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-## Customization
-
-### Colors
-
-The main brand colors are defined as CSS variables in `src/App.css`:
-
-```css
-:root {
-  --kavia-orange: #E87A41;
-  --kavia-dark: #1A1A1A;
-  --text-color: #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.7);
-  --border-color: rgba(255, 255, 255, 0.1);
-}
+```bash
+npm install
+npm start
 ```
 
-### Components
+Open http://localhost:3000
 
-This template uses pure HTML/CSS components instead of a UI framework. You can find component styles in `src/App.css`. 
+## Environment Variables
 
-Common components include:
-- Buttons (`.btn`, `.btn-large`)
-- Container (`.container`)
-- Navigation (`.navbar`)
-- Typography (`.title`, `.subtitle`, `.description`)
+Create a `.env` file at the project root (same folder as package.json):
 
-## Learn More
+```
+REACT_APP_BACKEND_URL=http://localhost:8000
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+If not set, the app will call relative endpoints and you can configure a proxy.
 
-### Code Splitting
+## API Endpoints (placeholders)
+- POST {REACT_APP_BACKEND_URL}/api/chat/message  
+  Body: `{ "message": string }`  
+  Response: `{ "messages": [ { "role": "agent" | "user", "agentId": string, "content": string, "timestamp": number } ], "agentStatus": { [agentId]: "idle" | "thinking" | "responding" | "error" } }`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- GET {REACT_APP_BACKEND_URL}/api/chat/agents/status  
+  Response: `{ "agentStatus": { [agentId]: "idle" | "thinking" | "responding" | "error" } }`
 
-### Analyzing the Bundle Size
+## Theme & Styles
+- Base tokens and inline styles live in `src/App.js` (themeTokens, styles)
+- Global utilities in `src/App.css` and `src/index.css`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Build
+```bash
+npm run build
+```
 
-### Making a Progressive Web App
+## Notes
+- This project intentionally avoids heavy UI libraries for a lightweight experience.
+- Replace the placeholder fetch endpoints in `App.js` when your backend is ready.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+For more, see `steps.txt`.
