@@ -191,13 +191,14 @@ function App() {
         }, 1200);
       }
     } catch (err) {
+      console.error('Failed to send message to backend endpoint:', `${API_BASE}/api/chat/message`, err);
       setMessages((prev) => [
         ...prev,
         {
           id: `err_${Date.now()}`,
           role: 'system',
           content:
-            'Oops! Something went wrong talking to the backend. Please check your connection and try again.',
+            `Oops! Something went wrong talking to the backend at ${API_BASE || '(same-origin)'}/api/chat/message. Please check your connection and try again.`,
           timestamp: Date.now(),
           error: true,
         },

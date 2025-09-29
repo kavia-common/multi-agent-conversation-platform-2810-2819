@@ -22,13 +22,14 @@ Open http://localhost:3000
 
 ## Environment Variables
 
-Create a `.env` file at the project root (same folder as package.json):
+Create a `.env` file at the project root (same folder as package.json), or copy `.env.example` to `.env`:
 
 ```
 REACT_APP_BACKEND_URL=http://localhost:8000
 ```
 
-If not set, the app will call relative endpoints and you can configure a proxy.
+- If REACT_APP_BACKEND_URL is set, API calls go to `${REACT_APP_BACKEND_URL}/api/...`.
+- If not set, the app will call relative endpoints (`/api/...`) and will use the development proxy configured in `package.json` to forward to `http://localhost:8000`.
 
 ## API Endpoints (placeholders)
 - POST {REACT_APP_BACKEND_URL}/api/chat/message  
