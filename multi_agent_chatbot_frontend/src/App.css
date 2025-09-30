@@ -15,8 +15,8 @@
   --bg: #0f1021;
   --surface: #17182c;
   --text: #f7f7fb;
-  --muted: rgba(255,255,255,0.7);
-  --border: rgba(255,255,255,0.08);
+  --muted: rgba(255,255,255,0.75);
+  --border: rgba(255,255,255,0.12);
 }
 
 /* Base reset and typography enhancements shared with index.css */

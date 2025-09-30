@@ -3,6 +3,19 @@ import './App.css';
 import './index.css';
 
 /**
+ * PUBLIC INTERFACES
+ * - App (default export): Renders the full single-page chat UI.
+ * - sendMessageToBackend(text: string): POSTs a user message to the backend; expects agent messages + status in response.
+ * - fetchAgentStatus(): GETs agent status. Currently used as an example; can be wired to polling if desired.
+ *
+ * Backend integration:
+ * Set REACT_APP_BACKEND_URL in environment. The app will call:
+ *  - POST {REACT_APP_BACKEND_URL}/api/chat/message
+ *  - GET  {REACT_APP_BACKEND_URL}/api/chat/agents/status
+ * If REACT_APP_BACKEND_URL is not set, relative endpoints (/api/...) are used and a dev proxy may forward to backend.
+ */
+
+/**
  * Ocean Professional Theme Tokens
  * Using vibrant, playful palette with soft rounded corners and subtle gradients.
  */

@@ -31,17 +31,31 @@ REACT_APP_BACKEND_URL=http://localhost:8000
 - If REACT_APP_BACKEND_URL is set, API calls go to `${REACT_APP_BACKEND_URL}/api/...`.
 - If not set, the app will call relative endpoints (`/api/...`) and will use the development proxy configured in `package.json` to forward to `http://localhost:8000`.
 
+Note: Do not commit your `.env` file. The variable is required from the user/deployment environment.
+
 ## API Endpoints (placeholders)
 - POST {REACT_APP_BACKEND_URL}/api/chat/message  
   Body: `{ "message": string }`  
-  Response: `{ "messages": [ { "role": "agent" | "user", "agentId": string, "content": string, "timestamp": number } ], "agentStatus": { [agentId]: "idle" | "thinking" | "responding" | "error" } }`
+  Response: 
+  ```
+  {
+    "messages": [
+      { "role": "agent" | "user", "agentId": "agent_rag" | "agent_planner", "content": "text", "timestamp": 1710000000 }
+    ],
+    "agentStatus": { "agent_rag": "idle|thinking|responding|error", "agent_planner": "idle|thinking|responding|error" }
+  }
+  ```
 
 - GET {REACT_APP_BACKEND_URL}/api/chat/agents/status  
-  Response: `{ "agentStatus": { [agentId]: "idle" | "thinking" | "responding" | "error" } }`
+  Response: 
+  ```
+  { "agentStatus": { "agent_rag": "idle|thinking|responding|error", "agent_planner": "idle|thinking|responding|error" } }
+  ```
 
 ## Theme & Styles
 - Base tokens and inline styles live in `src/App.js` (themeTokens, styles)
 - Global utilities in `src/App.css` and `src/index.css`
+- The theme supports a light/dark toggle and uses soft, rounded corners with energetic gradients to match the “Ocean Professional” playful style.
 
 ## Build
 ```bash
@@ -51,5 +65,6 @@ npm run build
 ## Notes
 - This project intentionally avoids heavy UI libraries for a lightweight experience.
 - Replace the placeholder fetch endpoints in `App.js` when your backend is ready.
+- If the backend is not running, the UI will use a simulated response for demo purposes.
 
 For more, see `steps.txt`.
